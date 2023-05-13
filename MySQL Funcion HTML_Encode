@@ -1,0 +1,1225 @@
+DELIMITER $$
+DROP FUNCTION IF EXISTS HTML_Encode$$
+
+CREATE FUNCTION HTML_Encode(X VARCHAR(255)) RETURNS VARCHAR(255) CHARSET utf8 DETERMINISTIC
+BEGIN
+
+		DECLARE TextString VARCHAR(255);
+		DECLARE word VARCHAR(255);
+
+		SET TextString = X;
+
+		SET word = '"';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&quot;');
+		END IF;
+		
+		SET word = '''';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&apos;');
+		END IF;
+
+		SET word = '&';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&amp;');
+		END IF;
+
+		SET word = '<';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&lt;');
+		END IF;
+
+		SET word = '>';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&gt;');
+		END IF;
+
+		SET word = 'Œ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&OElig;');
+		END IF;
+
+		SET word = 'œ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&oelig;');
+		END IF;
+
+		SET word = 'Š';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Scaron;');
+		END IF;
+
+		SET word = 'š';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&scaron;');
+		END IF;
+
+		SET word = 'Ÿ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Yuml;');
+		END IF;
+
+		SET word = 'ƒ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&fnof;');
+		END IF;
+
+		SET word = 'ˆ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&circ;');
+		END IF;
+
+		SET word = '˜';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&tilde;');
+		END IF;
+
+		SET word = ' ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ensp;');
+		END IF;
+
+		SET word = ' ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&emsp;');
+		END IF;
+
+		SET word = ' ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&thinsp;');
+		END IF;
+
+		SET word = '‌';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&zwnj;');
+		END IF;
+
+		SET word = '‍';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&zwj;');
+		END IF;
+
+		SET word = '‎';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&lrm;');
+		END IF;
+
+		SET word = '‏';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&rlm;');
+		END IF;
+
+		SET word = '–';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ndash;');
+		END IF;
+
+		SET word = '—';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&mdash;');
+		END IF;
+
+		SET word = '‘';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&lsquo;');
+		END IF;
+
+		SET word = '’';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&rsquo;');
+		END IF;
+
+		SET word = '‚';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sbquo;');
+		END IF;
+
+		SET word = '“';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ldquo;');
+		END IF;
+
+		SET word = '”';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&rdquo;');
+		END IF;
+
+		SET word = '„';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&bdquo;');
+		END IF;
+
+		SET word = '†';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&dagger;');
+		END IF;
+
+		SET word = '‡';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Dagger;');
+		END IF;
+
+		SET word = '•';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&bull;');
+		END IF;
+
+		SET word = '…';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&hellip;');
+		END IF;
+
+		SET word = '‰';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&permil;');
+		END IF;
+
+		SET word = '′';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&prime;');
+		END IF;
+
+		SET word = '″';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Prime;');
+		END IF;
+
+		SET word = '‹';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&lsaquo;');
+		END IF;
+
+		SET word = '›';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&rsaquo;');
+		END IF;
+
+		SET word = '‾';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&oline;');
+		END IF;
+
+		SET word = '€';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&euro;');
+		END IF;
+
+		SET word = '™';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&trade;');
+		END IF;
+
+		SET word = '←';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&larr;');
+		END IF;
+
+		SET word = '↑';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&uarr;');
+		END IF;
+
+		SET word = '→';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&rarr;');
+		END IF;
+
+		SET word = '↓';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&darr;');
+		END IF;
+
+		SET word = '↔';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&harr;');
+		END IF;
+
+		SET word = '↵';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&crarr;');
+		END IF;
+
+		SET word = '⌈';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&lceil;');
+		END IF;
+
+		SET word = '⌉';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&rceil;');
+		END IF;
+
+		SET word = '⌊';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&lfloor;');
+		END IF;
+
+		SET word = '⌋';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&rfloor;');
+		END IF;
+
+		SET word = '◊';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&loz;');
+		END IF;
+
+		SET word = '♠';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&spades;');
+		END IF;
+
+		SET word = '♣';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&clubs;');
+		END IF;
+
+		SET word = '♥';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&hearts;');
+		END IF;
+
+		SET word = '♦';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&diams;');
+		END IF;
+
+		SET word = '∀';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&forall;');
+		END IF;
+
+		SET word = '∂';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&part;');
+		END IF;
+
+		SET word = '∃';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&exist;');
+		END IF;
+
+		SET word = '∅';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&empty;');
+		END IF;
+
+		SET word = '∇';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&nabla;');
+		END IF;
+
+		SET word = '∈';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&isin;');
+		END IF;
+
+		SET word = '∉';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&notin;');
+		END IF;
+
+		SET word = '∋';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ni;');
+		END IF;
+
+		SET word = '∏';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&prod;');
+		END IF;
+
+		SET word = '∑';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sum;');
+		END IF;
+
+		SET word = '−';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&minus;');
+		END IF;
+
+		SET word = '∗';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&lowast;');
+		END IF;
+
+		SET word = '√';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&radic;');
+		END IF;
+
+		SET word = '∝';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&prop;');
+		END IF;
+
+		SET word = '∞';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&infin;');
+		END IF;
+
+		SET word = '∠';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ang;');
+		END IF;
+
+		SET word = '∧';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&and;');
+		END IF;
+
+		SET word = '∨';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&or;');
+		END IF;
+
+		SET word = '∩';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&cap;');
+		END IF;
+
+		SET word = '∪';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&cup;');
+		END IF;
+
+		SET word = '∫';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&int;');
+		END IF;
+
+		SET word = '∴';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&there4;');
+		END IF;
+
+		SET word = '∼';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sim;');
+		END IF;
+
+		SET word = '≅';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&cong;');
+		END IF;
+
+		SET word = '≈';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&asymp;');
+		END IF;
+
+		SET word = '≠';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ne;');
+		END IF;
+
+		SET word = '≡';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&equiv;');
+		END IF;
+
+		SET word = '≤';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&le;');
+		END IF;
+
+		SET word = '≥';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ge;');
+		END IF;
+
+		SET word = '⊂';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sub;');
+		END IF;
+
+		SET word = '⊃';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sup;');
+		END IF;
+
+		SET word = '⊄';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&nsub;');
+		END IF;
+
+		SET word = '⊆';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sube;');
+		END IF;
+
+		SET word = '⊇';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&supe;');
+		END IF;
+
+		SET word = '⊕';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&oplus;');
+		END IF;
+
+		SET word = '⊗';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&otimes;');
+		END IF;
+
+		SET word = '⊥';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&perp;');
+		END IF;
+
+		SET word = '⋅';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sdot;');
+		END IF;
+
+		SET word = 'Α';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Alpha;');
+		END IF;
+
+		SET word = 'Β';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Beta;');
+		END IF;
+
+		SET word = 'Γ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Gamma;');
+		END IF;
+
+		SET word = 'Δ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Delta;');
+		END IF;
+
+		SET word = 'Ε';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Epsilon;');
+		END IF;
+
+		SET word = 'Ζ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Zeta;');
+		END IF;
+
+		SET word = 'Η';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Eta;');
+		END IF;
+
+		SET word = 'Θ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Theta;');
+		END IF;
+
+		SET word = 'Ι';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Iota;');
+		END IF;
+
+		SET word = 'Κ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Kappa;');
+		END IF;
+
+		SET word = 'Λ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Lambda;');
+		END IF;
+
+		SET word = 'Μ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Mu;');
+		END IF;
+
+		SET word = 'Ν';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Nu;');
+		END IF;
+
+		SET word = 'Ξ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Xi;');
+		END IF;
+
+		SET word = 'Ο';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Omicron;');
+		END IF;
+
+		SET word = 'Π';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Pi;');
+		END IF;
+
+		SET word = 'Ρ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Rho;');
+		END IF;
+
+		SET word = '';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'');
+		END IF;
+
+		SET word = 'Σ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Sigma;');
+		END IF;
+
+		SET word = 'Τ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Tau;');
+		END IF;
+
+		SET word = 'Υ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Upsilon;');
+		END IF;
+
+		SET word = 'Φ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Phi;');
+		END IF;
+
+		SET word = 'Χ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Chi;');
+		END IF;
+
+		SET word = 'Ψ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Psi;');
+		END IF;
+
+		SET word = 'Ω';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Omega;');
+		END IF;
+
+		SET word = 'α';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&alpha;');
+		END IF;
+
+		SET word = 'β';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&beta;');
+		END IF;
+
+		SET word = 'γ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&gamma;');
+		END IF;
+
+		SET word = 'δ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&delta;');
+		END IF;
+
+		SET word = 'ε';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&epsilon;');
+		END IF;
+
+		SET word = 'ζ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&zeta;');
+		END IF;
+
+		SET word = 'η';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&eta;');
+		END IF;
+
+		SET word = 'θ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&theta;');
+		END IF;
+
+		SET word = 'ι';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&iota;');
+		END IF;
+
+		SET word = 'κ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&kappa;');
+		END IF;
+
+		SET word = 'λ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&lambda;');
+		END IF;
+
+		SET word = 'μ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&mu;');
+		END IF;
+
+		SET word = 'ν';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&nu;');
+		END IF;
+
+		SET word = 'ξ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&xi;');
+		END IF;
+
+		SET word = 'ο';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&omicron;');
+		END IF;
+
+		SET word = 'π';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&pi;');
+		END IF;
+
+		SET word = 'ρ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&rho;');
+		END IF;
+
+		SET word = 'ς';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sigmaf;');
+		END IF;
+
+		SET word = 'σ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sigma;');
+		END IF;
+
+		SET word = 'τ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&tau;');
+		END IF;
+
+		SET word = 'υ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&upsilon;');
+		END IF;
+
+		SET word = 'φ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&phi;');
+		END IF;
+
+		SET word = 'χ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&chi;');
+		END IF;
+
+		SET word = 'ψ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&psi;');
+		END IF;
+
+		SET word = 'ω';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&omega;');
+		END IF;
+
+		SET word = 'ϑ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&thetasym;');
+		END IF;
+
+		SET word = 'ϒ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&upsih;');
+		END IF;
+
+		SET word = 'ϖ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&piv;');
+		END IF;
+
+		SET word = 'À';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Agrave;');
+		END IF;
+
+		SET word = 'Á';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Aacute;');
+		END IF;
+
+		SET word = 'Â';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Acirc;');
+		END IF;
+
+		SET word = 'Ã';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Atilde;');
+		END IF;
+
+		SET word = 'Ä';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Auml;');
+		END IF;
+
+		SET word = 'Å';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Aring;');
+		END IF;
+
+		SET word = 'Æ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&AElig;');
+		END IF;
+
+		SET word = 'Ç';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Ccedil;');
+		END IF;
+
+		SET word = 'È';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Egrave;');
+		END IF;
+
+		SET word = 'É';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Eacute;');
+		END IF;
+
+		SET word = 'Ê';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Ecirc;');
+		END IF;
+
+		SET word = 'Ë';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Euml;');
+		END IF;
+
+		SET word = 'Ì';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Igrave;');
+		END IF;
+
+		SET word = 'Í';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Iacute;');
+		END IF;
+
+		SET word = 'Î';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Icirc;');
+		END IF;
+
+		SET word = 'Ï';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Iuml;');
+		END IF;
+
+		SET word = 'Ð';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ETH;');
+		END IF;
+
+		SET word = 'Ñ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Ntilde;');
+		END IF;
+
+		SET word = 'Ò';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Ograve;');
+		END IF;
+
+		SET word = 'Ó';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Oacute;');
+		END IF;
+
+		SET word = 'Ô';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Ocirc;');
+		END IF;
+
+		SET word = 'Õ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Otilde;');
+		END IF;
+
+		SET word = 'Ö';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Ouml;');
+		END IF;
+
+		SET word = 'Ø';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Oslash;');
+		END IF;
+
+		SET word = 'Ù';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Ugrave;');
+		END IF;
+
+		SET word = 'Ú';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Uacute;');
+		END IF;
+
+		SET word = 'Û';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Ucirc;');
+		END IF;
+
+		SET word = 'Ü';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Uuml;');
+		END IF;
+
+		SET word = 'Ý';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&Yacute;');
+		END IF;
+
+		SET word = 'Þ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&THORN;');
+		END IF;
+
+		SET word = 'ß';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&szlig;');
+		END IF;
+
+		SET word = 'à';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&agrave;');
+		END IF;
+
+		SET word = 'á';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&aacute;');
+		END IF;
+
+		SET word = 'â';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&acirc;');
+		END IF;
+
+		SET word = 'ã';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&atilde;');
+		END IF;
+
+		SET word = 'ä';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&auml;');
+		END IF;
+
+		SET word = 'å';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&aring;');
+		END IF;
+
+		SET word = 'æ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&aelig;');
+		END IF;
+
+		SET word = 'ç';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ccedil;');
+		END IF;
+
+		SET word = 'è';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&egrave;');
+		END IF;
+
+		SET word = 'é';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&eacute;');
+		END IF;
+
+		SET word = 'ê';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ecirc;');
+		END IF;
+
+		SET word = 'ë';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&euml;');
+		END IF;
+
+		SET word = 'ì';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&igrave;');
+		END IF;
+
+		SET word = 'í';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&iacute;');
+		END IF;
+
+		SET word = 'î';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&icirc;');
+		END IF;
+
+		SET word = 'ï';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&iuml;');
+		END IF;
+
+		SET word = 'ð';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&eth;');
+		END IF;
+
+		SET word = 'ñ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ntilde;');
+		END IF;
+
+		SET word = 'ò';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ograve;');
+		END IF;
+
+		SET word = 'ó';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&oacute;');
+		END IF;
+
+		SET word = 'ô';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ocirc;');
+		END IF;
+
+		SET word = 'õ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&otilde;');
+		END IF;
+
+		SET word = 'ö';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ouml;');
+		END IF;
+
+		SET word = 'ø';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&oslash;');
+		END IF;
+
+		SET word = 'ù';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ugrave;');
+		END IF;
+
+		SET word = 'ú';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&uacute;');
+		END IF;
+
+		SET word = 'û';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ucirc;');
+		END IF;
+
+		SET word = 'ü';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&uuml;');
+		END IF;
+
+		SET word = 'ý';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&yacute;');
+		END IF;
+
+		SET word = 'þ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&thorn;');
+		END IF;
+
+		SET word = 'ÿ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&yuml;');
+		END IF;
+
+		SET word = '  ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&nbsp;&nbsp;');
+		END IF;
+
+		SET word = '¡';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&iexcl;');
+		END IF;
+
+		SET word = '¢';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&cent;');
+		END IF;
+
+		SET word = '£';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&pound;');
+		END IF;
+
+		SET word = '¤';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&curren;');
+		END IF;
+
+		SET word = '¥';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&yen;');
+		END IF;
+
+		SET word = '¦';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&brvbar;');
+		END IF;
+
+		SET word = '§';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sect;');
+		END IF;
+
+		SET word = '¨';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&uml;');
+		END IF;
+
+		SET word = '©';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&copy;');
+		END IF;
+
+		SET word = 'ª';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ordf;');
+		END IF;
+
+		SET word = '«';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&laquo;');
+		END IF;
+
+		SET word = '¬';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&not;');
+		END IF;
+
+		SET word = '­';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&shy;');
+		END IF;
+
+		SET word = '®';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&reg;');
+		END IF;
+
+		SET word = '¯';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&macr;');
+		END IF;
+
+		SET word = '°';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&deg;');
+		END IF;
+
+		SET word = '±';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&plusmn;');
+		END IF;
+
+		SET word = '²';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sup2;');
+		END IF;
+
+		SET word = '³';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sup3;');
+		END IF;
+
+		SET word = '´';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&acute;');
+		END IF;
+
+		SET word = 'µ';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&micro;');
+		END IF;
+
+		SET word = '¶';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&para;');
+		END IF;
+
+		SET word = '·';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&middot;');
+		END IF;
+
+		SET word = '¸';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&cedil;');
+		END IF;
+
+		SET word = '¹';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&sup1;');
+		END IF;
+
+		SET word = 'º';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&ordm;');
+		END IF;
+
+		SET word = '»';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&raquo;');
+		END IF;
+
+		SET word = '¼';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&frac14;');
+		END IF;
+
+		SET word = '½';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&frac12;');
+		END IF;
+
+		SET word = '¾';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&frac34;');
+		END IF;
+
+		SET word = '¿';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&iquest;');
+		END IF;
+
+		SET word = '×';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&times;');
+		END IF;
+
+		SET word = '÷';
+		IF INSTR( X , word ) THEN 
+				SET TextString = REPLACE(TextString, word,'&divide;');
+		END IF;
+
+		RETURN TextString;
+		
+END$$
+DELIMITER ;
